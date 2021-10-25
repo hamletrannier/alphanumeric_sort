@@ -1,3 +1,4 @@
+import unittest
 
 
 def alphanumeric_sort(value):
@@ -7,23 +8,31 @@ def alphanumeric_sort(value):
     sort_list = []
 
     for char in value:
-
-        if (char.islower):
+        if (char.islower()):
             lowercase.append(char)
 
-        if (char.isnumeric):
+        if (char.isnumeric()):
             numbs.append(char)
 
-        if (char.isupper):
+        if (char.isupper()):
             uppercase.append(char)
 
     sort_list.extend(sorted(numbs))
-    print(sort_list)
+
     sort_list.extend(sorted(lowercase))
-    print(sort_list)
+
     sort_list.extend(sorted(uppercase))
 
-    return sort_list
+    return ''.join(sort_list)
 
 
-print(alphanumeric_sort('i11u6'))
+class TestAlphaNumericSort(unittest.TestCase):
+
+    def test_case_1(self):
+        self.assertEqual(alphanumeric_sort('i11u6'), '116iu')
+
+    def test_case_2(self):
+        self.assertEqual(alphanumeric_sort('ai66u9'), '669aiu')
+
+
+    unittest.main()
